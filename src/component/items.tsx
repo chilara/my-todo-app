@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-// import {Todo} from "../store/slices/slice";
+import Todo from "../store/slices/slice";
 import { deleteTodo, statusTodo } from "../store/slices/slice";
 import icon from "../asset/icon.png";
 import edit from "../asset/edit.png";
@@ -16,12 +16,12 @@ interface TodoItem {
   onEdit: (id: number) => void;
 }
 
-const TodoItem: React.FC<TodoItem> = ({ todo, onEdit }) => {
+const Items: React.FC<TodoItem> = ({ todo, onEdit }) => {
   const dispatch = useDispatch();
 
   return (
     <div>
-      <div className="flex justify-between w-[100%] items-center">
+      <div className="flex gap-8 justify-between w-[100%] items-center">
         <div className="flex gap-2 items-center">
           <input
             type="checkbox"
@@ -58,5 +58,5 @@ const TodoItem: React.FC<TodoItem> = ({ todo, onEdit }) => {
   );
 };
 
-export default TodoItem;
+export default Items;
 

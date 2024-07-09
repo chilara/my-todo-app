@@ -1,8 +1,7 @@
-//@ts-nocheck
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
-import TodoItem from "./todoItem";
+import Items from "./items";
 import { addTodo, editTodo } from "../store/slices/slice";
 import Header from "./header";
 import saver from "../asset/saver.png";
@@ -26,11 +25,11 @@ const InputTodo = () => {
     const todo = todos.find((todo) => todo.id === id);
     if (todos) {
       setEditingId(id);
-      setEditingText(todo.text);
+      setEditingText(todo?.text as string);
     }
   };
 
-  const handleSaveEdit = () => {
+  const handleSave = () => {
     if (editingId !== null && editingText.trim()) {
       dispatch(editTodo({ id: editingId, text: editingText }));
       setEditingId(null);
@@ -41,7 +40,7 @@ const InputTodo = () => {
   return (
     <div>
       <div
-        className="md:w-[50%] md:mx-auto bg-[#f8f9fd] p-8 mt-16 flex flex-col justify-center items-center gap-12"
+        className="md:w-[50%] md:mx-auto bg-[#f8f9fd] p-8 mt-16 flex flex-col justify-center items-center gap-12 mb-12"
         style={{ boxShadow: "3px 10px 13px -2px rgba(0, 0, 0, 0.27)" }}
       >
         <Header />
@@ -78,7 +77,7 @@ const InputTodo = () => {
               }}
               className="w-[90%] h-4 p-[15px]"
             />
-            <button onClick={handleSaveEdit}>
+            <button onClick={handleSave}>
               <img
                 src={saver}
                 alt="img"
@@ -91,7 +90,7 @@ const InputTodo = () => {
         <div className="w-[100%] flex flex-col gap-4">
           {todos.map((todo) => (
             <div key={todo.id} className="w-full">
-              <TodoItem todo={todo} onEdit={handleEdit} />
+              <Items todo={todo} onEdit={handleEdit} />
             </div>
           ))}
         </div>

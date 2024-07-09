@@ -1,6 +1,4 @@
-//@ts-nocheck
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 
 interface Todo {
   id: number;
@@ -9,7 +7,7 @@ interface Todo {
 }
 
 interface TodoState {
-  todos: [];
+  todos: Array<Todo>;
 }
 
 const initialState: TodoState = {

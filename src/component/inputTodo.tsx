@@ -5,6 +5,7 @@ import Items from "./items";
 import { addTodo, editTodo } from "../store/slices/slice";
 import Header from "./header";
 import saver from "../asset/saver.png";
+import empty from "../asset/empty.svg";
 
 const InputTodo = () => {
   const [newTodo, setNewTodo] = useState("");
@@ -23,7 +24,7 @@ const InputTodo = () => {
 
   const handleEdit = (id: number) => {
     const todo = todos.find((todo) => todo.id === id);
-    if (todos) {
+    if (todo) {
       setEditingId(id);
       setEditingText(todo?.text as string);
     }
@@ -45,7 +46,7 @@ const InputTodo = () => {
       >
         <Header />
         <div
-          className="flex justify-between items-center bg-white p-4 w-[90%] m-[2rem auto] mt-5"
+          className="flex justify-between rounded-md items-center bg-white p-4 w-[90%] m-[2rem auto] mt-5"
           style={{ boxShadow: "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)" }}
         >
           <input
@@ -87,12 +88,27 @@ const InputTodo = () => {
             </button>
           </div>
         )}
-        <div className="w-[100%] flex flex-col gap-4">
-          {todos.map((todo) => (
-            <div key={todo.id} className="w-full">
-              <Items todo={todo} onEdit={handleEdit} />
+        <div
+          className="w-[100%] flex flex-col gap-4  rounded-lg p-3 h-fit"
+          style={{ boxShadow: "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)" }}
+        >
+          {todos?.length === 0 ? (
+            <div className="flex flex-col items-center p-12 ">
+              <img
+                src={empty}
+                alt="This represents no data found"
+                width={150}
+                height={150}
+              />
+              <p className="text-sm font-medium text-gray-600">No Item found</p>
             </div>
-          ))}
+          ) : (
+            todos.map((todo) => (
+              <div key={todo.id} className="w-full">
+                <Items todo={todo} onEdit={handleEdit} />
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

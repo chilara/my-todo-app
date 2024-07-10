@@ -21,7 +21,7 @@ const Items: React.FC<TodoItem> = ({ todo, onEdit }) => {
 
   return (
     <div>
-      <div className="flex gap-8 justify-between w-[100%] items-center">
+      <div className="flex gap-8 justify-between bg-[#f8f9fd] px-2 w-[100%] items-center rounded-lg" style={{border:"0.5px solid #e9e9e9"}}>
         <div className="flex gap-2 items-center">
           <input
             type="checkbox"
@@ -35,7 +35,7 @@ const Items: React.FC<TodoItem> = ({ todo, onEdit }) => {
             {todo.text}
           </p>
         </div>
-        <div className="flex items-center gap-3 p-8">
+        <div className="flex items-center gap-3 p-5">
           <button onClick={() => onEdit(todo.id)} className="w-4 h-4">
             <img
               src={edit}

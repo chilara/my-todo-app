@@ -6,16 +6,19 @@ interface Todo {
   status: boolean;
 }
 
+// Define a type for the slice state
 interface TodoState {
   todos: Array<Todo>;
 }
 
+// Define the initial state using that type
 const initialState: TodoState = {
   todos: [],
 };
 
 const todoSlice = createSlice({
   name: "todos",
+  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
